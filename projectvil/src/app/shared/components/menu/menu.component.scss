@@ -1,0 +1,91 @@
+.main {
+  width: 383px;
+  height: 615px;
+  background-color: #393A3F;
+  border-radius: 50px;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.main-close {
+  width: 88px;
+  height: 615px;
+  background-color: #393A3F;
+  border-radius: 50px;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+  padding: 15px 14px;
+  box-sizing: border-box;
+}
+
+.img {
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+
+.block {
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.gear,
+.question-circle,
+.chat,
+.person-check,
+.file-check,
+.personal-data,
+.files {
+  display: flex;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  font-family: 'SF Pro', sans-serif;
+  align-items: center;
+  margin: 0;
+  visibility: visible;
+  transition: visibility 0.3s ease;
+}
+
+.expanded .gear .question-circle .chat .person-check .file-check .personal-data .files {
+  visibility: hidden;
+}
+
+.bottom-block {
+  margin-top: 110px;
+}
+
+.burger {
+  margin-left: 6px;
+}
+
+.burger-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.allow {
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+button {
+  transition: transform 0.3s ease;
+  transform-origin: center;
+  height: 48px;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}

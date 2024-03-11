@@ -1,0 +1,45 @@
+{
+  "Home:Title": "Look and create!",
+  "Home:Signin": "Sign in",
+  "Home:Signup": "Sign up",
+  "Home:About": "About us",
+  "Home:Projects": "Projects",
+  "Home:Participants": "Participants",
+  "Home:Vacancies": "Vacancies",
+  "Home:First-description": "We offer employees and startups the opportunity to find each other. Being part of such projects can be promising: working in a startup can provide unique experience and potential for career growth.",
+  "Home:Second-description": "Welcome to our virtual corner where dreams come true, and inspiration is the engine of change! We have created a unique platform that brings together people and ideas, combining them into one powerful combination. Here, talent finds its calling, and startups find the dream in the form of a reliable, perfectly fitting employee. We believe in the power of innovation, inspiration, and the pursuit of success.",
+  "Home:Third-description": "Here you will see our completed projects that have already been successfully implemented. We take pride in the results of our teams and are ready to share details about each project with you. You can create your own project here and choose the team that will work on its implementation. We provide a unique opportunity for clients to flexibly control the process and select a team of specialists that fits their project perfectly.",
+  "Home:CreateProject": "Create a project",
+  "Home:FindProject": "Find a project",
+
+  "Menu:Personal-data": "Personal Information",
+  "Menu:Files": "Project List",
+  "Menu:File-check": "Saved Projects",
+  "Menu:Person-check": "Saved Specialists",
+  "Menu:Chat": "Chat",
+  "Menu:Question-circle": "Information",
+  "Menu:Gear": "Settings",
+
+  "Auth:Signin": "Sign in",
+  "Auth:Email": "Email",
+  "Auth:Password": "Password",
+  "Auth:Signup": "Sign up",
+  "Auth:Remember": "Remember me",
+  "Auth:Forget-password": "Forget the password",
+  "Auth:Registration-with": "Registration with:",
+
+  "Registration:Signup": "Sign up",
+  "Registration:Name": "Name",
+  "Registration:Password": "Password",
+  "Registration:Confirm-password": "Confirm the password",
+  "Registration:Notification:Confirm": "An email with a confirmation link has been sent to your email.",
+
+  "Registration:Error:Name": "* This is a required field",
+  "Registration:Error:Email": "* The password should contain at least 8 characters - 1 capital letter, 1 special symbol, 1 digit",
+  "Registration:Error:Password": "* The entered address must contain a symbol @",
+  "Registration:Error:Confirm-password": "* Password mismatch",
+
+  "ForgetPassword:Title": "Enter the email address to which your account was created",
+  "ForgetPassword:Send": "Send",
+  "ForgetPassword:Notification:New-password": "We have sent you an email with a new password. Please check your email"
+}

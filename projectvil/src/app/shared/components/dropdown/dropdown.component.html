@@ -1,0 +1,3 @@
+<select class="drop-down" [(ngModel)]="selectedValue" ngDefaultControl [title]="title">
+  <option *ngFor="let item of data" [value]="item[valueField]">{{item[textField]}}</option>
+</select>

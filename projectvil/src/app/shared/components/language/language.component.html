@@ -1,0 +1,22 @@
+<div class="dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
+  <button class="dropbtn">
+    <img src="../../../../assets/images/wrapper.svg"
+         alt="Language"
+         class="img"
+    >
+  </button>
+  <div class="dropdown-content">
+    <ul>
+      <li (click)="setLanguage('ru-ru')">
+        <img src="../../../../assets/images/RU.png"
+             alt="Russian Flag"
+             [ngClass]="{'show': !isDropdownOpen}">
+      </li>
+      <li (click)="setLanguage('en-US')">
+        <img src="../../../../assets/images/GB.png"
+             alt="UK Flag"
+             [ngClass]="{'show': !isDropdownOpen}">
+      </li>
+    </ul>
+  </div>
+</div>

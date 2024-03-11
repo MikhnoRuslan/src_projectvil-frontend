@@ -1,0 +1,90 @@
+<div class="main">
+  <div class="main-container">
+    <div class="title">{{ 'Registration:Signup' | translate }}</div>
+    <form [formGroup]="form" novalidate (ngSubmit)="submit()">
+      <div>
+        <input class="name"
+               placeholder="{{ 'Registration:Name' | translate }}"
+               formControlName="userName"
+               [ngClass]="{
+                  invalid:
+                    form.controls.userName.invalid && form.controls.userName.touched
+               }"
+        >
+        <div class="error"
+             [ngStyle]="{color: form.controls.userName.invalid && form.controls.userName.touched ? 'red' : '#393A3F'}">
+          {{ 'Registration:Error:Name' | translate }}
+        </div>
+        <input class="mail"
+               placeholder="E-mail"
+               formControlName="email"
+               [ngClass]="{invalid: form.controls.email.invalid && form.controls.email.touched}"
+        >
+        <div class="error"
+             [ngStyle]="{color: form.controls.email.invalid && form.controls.email.touched ? 'red' : '#393A3F'}">
+          {{ 'Registration:Error:Email' | translate }};
+        </div>
+        <div class="password-container">
+          <input class="password"
+                 type="{{ showPassword ? 'text' : 'password' }}"
+                 placeholder="{{ 'Registration:Password' | translate }}"
+                 formControlName="password"
+                 [ngClass]="{invalid: form.controls.password.invalid && form.controls.password.touched}"
+          >
+          <div class="error"
+               [ngStyle]="{color: form.controls.password.invalid && form.controls.password.touched ? 'red' : '#393A3F'}">
+            {{ 'Registration:Error:Password' | translate }}
+          </div>
+          <button class="show-password"
+                  type="button"
+                  aria-label="Show the password"
+                  (click)="togglePasswordVisibility()"
+          >
+            <img src="../../../../assets/images/eye.svg" class="img-eye" alt="Show the password">
+          </button>
+        </div>
+        <div class="password-container">
+          <input class="password"
+                 type="password"
+                 placeholder="{{ 'Registration:Confirm-password' | translate }}"
+                 formControlName="repeatPassword"
+                 [ngClass]="{
+                    invalid:
+                      form.controls.repeatPassword.invalid
+                      && form.controls.repeatPassword.touched
+                 }"
+          >
+          <div class="error"
+               [ngStyle]="{
+                  color:
+                    form.controls.repeatPassword.invalid && form.controls.repeatPassword.touched ? 'red' : '#393A3F'
+               }"
+          >
+            {{ 'Registration:Error:Confirm-password' | translate }}
+          </div>
+          <button class="show-password"
+                  type="button"
+                  aria-label="Show the password"
+          >
+            <img src="../../../../assets/images/close_eye.svg" class="img-eye" alt="Show the password">
+          </button>
+        </div>
+        <button class="create-project">{{ 'Registration:Signup' | translate }}</button>
+        <button class="enter" (click)="registration()">{{ 'Auth:Signin' | translate }}</button>
+      </div>
+    </form>
+    <div class="registration-with">{{ 'Auth:Registration-with' | translate }}</div>
+    <div class="outside-resource">
+      <button class="button-outside-resource-github" type="button" aria-label="GitHub">
+        <img
+          src="../../../../assets/images/Icon_github.svg"
+          class="img-outside-resource" alt="Github">
+      </button>
+      <button class="button-outside-resource-google" type="button" aria-label="Google">
+        <img
+          src="../../../../assets/images/Icon_google.svg"
+          class="img-outside-resource" alt="Google">
+      </button>
+    </div>
+  </div>
+</div>
