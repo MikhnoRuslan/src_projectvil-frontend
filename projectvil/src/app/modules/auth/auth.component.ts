@@ -25,11 +25,9 @@ export class AuthComponent{
   });
 
   onSubmit() {
-    console.log(this.form.value);
   }
 
   togglePasswordVisibility() {
-    console.log("test")
     this.showPassword = !this.showPassword;
   }
 

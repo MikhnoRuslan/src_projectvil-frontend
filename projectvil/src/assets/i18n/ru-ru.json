@@ -1,4 +1,8 @@
 {
+  "Error:Required": "* Данное поле является обязательным к заполнению",
+
+  "Success:CreateProject": "Проект был успешно создан.",
+
   "Home:Title": "Ищи и создавай!",
   "Home:Signin": "Войти",
   "Home:Signup": "Регистрация",
@@ -41,5 +45,31 @@
 
   "ForgetPassword:Title": "Введите адрес электронной почты, на который был создан Ваш аккаунт",
   "ForgetPassword:Send": "Отправить",
-  "ForgetPassword:Notification:New-password": "Мы выслали Вам электрнно письсь с новым паролем. Пожулуйста, проверьте Вашу почту"
+  "ForgetPassword:Notification:New-password": "Мы выслали Вам электрнно письсь с новым паролем. Пожулуйста, проверьте Вашу почту",
+
+  "DropDown:Placeholder": "Выбрать...",
+
+  "Navigation:CreateProject": "Создание проекта",
+  "Navigation:ListOfProject": "Список проектов",
+  "Navigation:OwnerOfProject": "Владелец проекта",
+  "Navigation:ParticipantOfProject": "Участник команды",
+
+  "Project:Details:Name": "Название проекта",
+  "Project:Details:Description": "Описание проекта",
+  "Project:Details:Domain": "Домен",
+  "Project:Details:Position": "Необходимые позиции в проекте",
+  "Project:Details:Status": "Статус проекта",
+  "Project:Details:Link": "Ссылка на проект",
+  "Project:Details:Git": "Ссылка на Git",
+  "Project:Details:Image": "Фото проекта",
+  "Project:Details:Image:Description": "JPEG, PNG, SVG, размер до 5 мб",
+  "Project:Details:Documents": "Галерея проекта",
+
+  "Project:Input:Name": "Введите название проекта",
+  "Project:Input:Description": "Добавьте описание проекта",
+  "Project:Input:Link": "Добавьте ссылку",
+  "Project:Input:Position": "Введите необходимые позиции",
+
+  "Hider:Button:CreateProject": "Создать проект",
+  "Hider:Hi": "Привет,"
 }

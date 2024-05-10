@@ -1,0 +1,53 @@
+.container {
+  width: 100%;
+  display: flex;
+  margin: 40px 0 40px 0;
+}
+
+.image {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+}
+
+.name {
+  color: white;
+  font-size: 40px;
+  font-family: 'SF Pro', sans-serif;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.user-name {
+  display: inline-flex;
+  margin-left: 27px;
+}
+
+.user {
+  display: flex;
+}
+
+.container-buttons {
+  display: flex;
+  position: relative;
+  margin: 7px 40px 7px auto;
+}
+
+.add-project {
+  width: 218px;
+
+}
+
+.language-container {
+  display: flex;
+  padding-right: 11px;
+}
+
+.buttons {
+  margin: 7px 30px 7px auto;
+  display: flex;
+}
+
+.language {
+  position: absolute;
+}

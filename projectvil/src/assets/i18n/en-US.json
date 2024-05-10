@@ -1,4 +1,8 @@
 {
+  "Error:Required": "* This is a required field",
+
+  "Success:CreateProject": "The project was successfully created.",
+
   "Home:Title": "Look and create!",
   "Home:Signin": "Sign in",
   "Home:Signup": "Sign up",
@@ -41,5 +45,31 @@
 
   "ForgetPassword:Title": "Enter the email address to which your account was created",
   "ForgetPassword:Send": "Send",
-  "ForgetPassword:Notification:New-password": "We have sent you an email with a new password. Please check your email"
+  "ForgetPassword:Notification:New-password": "We have sent you an email with a new password. Please check your email",
+
+  "DropDown:Placeholder": "Select...",
+
+  "Navigation:CreateProject": "Creating a Project",
+  "Navigation:ListOfProject": "List of projects",
+  "Navigation:OwnerOfProject": "The owner of the project",
+  "Navigation:ParticipantOfProject": "Member of the team",
+
+  "Project:Details:Name": "Project name",
+  "Project:Details:Description": "Project Description",
+  "Project:Details:Domain": "Domain",
+  "Project:Details:Position": "Required positions in the project",
+  "Project:Details:Status": "Project status",
+  "Project:Details:Link": "Project link",
+  "Project:Details:Git": "Git link",
+  "Project:Details:Image": "Photo of the project",
+  "Project:Details:Image:Description": "JPEG, PNG, SVG, size up to 5 MB",
+  "Project:Details:Documents": "Project gallery",
+
+  "Project:Input:Name": "Enter project name",
+  "Project:Input:Description": "Add a project description",
+  "Project:Input:Link": "Add a link",
+  "Project:Input:Position": "Enter required items",
+
+  "Hider:Button:CreateProject": "Create a project",
+  "Hider:Hi": "Hi,"
 }

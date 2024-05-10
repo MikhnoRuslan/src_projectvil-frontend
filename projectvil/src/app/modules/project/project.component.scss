@@ -1,0 +1,84 @@
+.block-content {
+  height: 170px;
+  background-color: #555659;
+  border-radius: 16px;
+  display: flex;
+  cursor: pointer;
+
+
+  //max-width: 100%;
+  width: 100%;
+
+  border: 1px solid var(--Gradient-Secondary-searsh_stroke, rgba(0, 0, 0, 0));
+  margin-bottom: 20px;
+}
+
+.image {
+  min-width: 387px;
+  height: 146px;
+  margin: 10px 0 10px 6px;
+  background-color: red;
+  border-radius: 10px;
+}
+
+.image-block {
+  position: relative;
+  display: inline-block;
+}
+
+.info {
+  margin: 16px;
+  width: 100%;
+
+  .name,
+  .domain-name,
+  .description {
+    color: white;
+    font-size: 20px;
+    font-family: 'SF Pro', sans-serif;
+    text-align: left;
+  }
+
+  .domain-name,
+  .position {
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: left;
+    color: white;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-top: 20px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Ограничиваем количество строк до 3 */
+    -webkit-box-orient: vertical;
+  }
+}
+
+.status {
+  width: 79px;
+  height: 21px;
+  border-radius: 12.5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding-top: 6px;
+  color: white;
+  position: absolute;
+
+
+  margin-top: 120px;
+  margin-left: 305px;
+}
+
+.futer {
+  display: flex;
+}
+
+.like {
+  margin: 20px 5px 0 auto;
+  z-index: 1;
+}

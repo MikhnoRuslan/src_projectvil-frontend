@@ -9,7 +9,6 @@
           <img src="assets/images/logo.png"
                alt="logo"
                class="logo"
-               (click)="test()"
           >
         </button>
         <div class="projectvil">Projectvil</div>
@@ -66,11 +65,3 @@
     >{{ 'Home:CreateProject' | translate }}</button>
   </div>
 </div>
-<app-dropdown
-  title="domain"
-  [data]="domains"
-  valueField="id"
-  textField="name"
-  [(ngModel)]="domainId"
-  ngDefaultControl
-></app-dropdown>

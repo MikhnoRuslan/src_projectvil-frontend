@@ -7,7 +7,7 @@ import { passwordValidator, repeatPasswordValidator } from "../../../shared/pass
 import { IUserRegistrationModel } from "../../../../shared/models/auth/registration/user.registration.model";
 import { RegistrationService } from "../../../core/services/registration.service";
 import { MessageService } from "../../../core/services/message.service";
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-registration',
@@ -52,6 +52,15 @@ export class RegistrationComponent {
   }, {validators: repeatPasswordValidator()});
 
   submit() {
+    if (!this.form.valid) {
+      Object.keys(this.form.controls).forEach(field => {
+        const control = this.form.get(field) as FormControl;
+        control.markAsTouched({ onlySelf: true });
+      });
+
+      return;
+    }
+
     const {
       userName,
       email,

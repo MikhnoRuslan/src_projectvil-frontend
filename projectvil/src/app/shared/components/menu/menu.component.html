@@ -2,54 +2,123 @@
   <div class="main-container">
     <div>
       <div class="block">
-        <a [routerLink]="['/home']" class="personal-data" [class.expanded]="isOpen">
-          <img src="../../../../assets/images/person.svg" alt="Personal data" class="img">
+        <a
+          routerLink="'/home'"
+          routerLinkActive="active"
+          class="personal-data"
+          [class.expanded]="isOpen"
+        >
+          <img
+            src="../../../../assets/images/person.svg"
+            alt="Personal data"
+            class="img"
+          >
           <span *ngIf="!isOpen">{{ 'Menu:Personal-data' | translate }}</span>
         </a>
       </div>
       <div class="block">
-        <a [routerLink]="['/home']" class="files" [class.expanded]="isOpen">
-          <img src="../../../../assets/images/files.svg" alt="Personal data" class="img">
+        <a
+          routerLink="/menu/project/isOwner/true"
+          routerLinkActive="active"
+          class="files"
+          [class.expanded]="isOpen"
+        >
+          <img
+            src="../../../../assets/images/files.svg"
+            alt="Personal data"
+            class="img"
+          >
           <span *ngIf="!isOpen">{{ 'Menu:Files' | translate }}</span>
         </a>
       </div>
       <div class="block">
-        <a [routerLink]="['/home']" class="file-check" [class.expanded]="isOpen">
-          <img src="../../../../assets/images/file-check.svg" alt="Personal data" class="img">
+        <a
+          routerLink="/home"
+          class="file-check"
+          routerLinkActive="active"
+          [class.expanded]="isOpen"
+        >
+          <img
+            src="../../../../assets/images/file-check.svg"
+            alt="Personal data"
+            class="img"
+          >
           <span *ngIf="!isOpen">{{ 'Menu:File-check' | translate }}</span>
         </a>
       </div>
       <div class="block">
-        <a [routerLink]="['/home']" class="person-check" [class.expanded]="isOpen">
-          <img src="../../../../assets/images/person-check.svg" alt="Personal data" class="img">
+        <a
+          routerLink="/home"
+          class="person-check"
+          routerLinkActive="active"
+          [class.expanded]="isOpen"
+        >
+          <img
+            src="../../../../assets/images/person-check.svg"
+            alt="Personal data"
+            class="img"
+          >
           <span *ngIf="!isOpen">{{ 'Menu:Person-check' | translate }}</span>
         </a>
       </div>
       <div class="block">
-        <a [routerLink]="['/home']" class="chat" [class.expanded]="isOpen">
-          <img src="../../../../assets/images/chat.svg" alt="Personal data" class="img">
+        <a
+          routerLink="/home"
+          class="chat"
+          routerLinkActive="active"
+          [class.expanded]="isOpen"
+        >
+          <img
+            src="../../../../assets/images/chat.svg"
+            alt="Personal data"
+            class="img"
+          >
           <span *ngIf="!isOpen">{{ 'Menu:Chat' | translate }}</span>
         </a>
       </div>
       <div class="block">
-        <a [routerLink]="['/home']" class="question-circle" [class.expanded]="isOpen">
-          <img src="../../../../assets/images/question-circle.svg" alt="Personal data" class="img">
+        <a
+          routerLink="/home"
+          class="question-circle"
+          routerLinkActive="active"
+          [class.expanded]="isOpen"
+        >
+          <img
+            src="../../../../assets/images/question-circle.svg"
+            alt="Personal data"
+            class="img"
+          >
           <span *ngIf="!isOpen">{{ 'Menu:Question-circle' | translate }}</span>
         </a>
       </div>
       <div class="bottom-block">
         <div class="block">
-          <a [routerLink]="['/home']" class="gear" [class.expanded]="isOpen">
-            <img src="../../../../assets/images/gear.svg" alt="Personal data" class="img">
+          <a
+            routerLink="/home"
+            class="gear"
+            routerLinkActive="active"
+            [class.expanded]="isOpen"
+          >
+            <img
+              src="../../../../assets/images/gear.svg"
+              alt="Personal data"
+              class="img"
+            >
             <span *ngIf="!isOpen">{{ 'Menu:Gear' | translate }}</span>
           </a>
         </div>
         <div class="burger">
-          <button class="burger-button"
-                  (click)="rotateButton()"
-                  [class.rotated]="isOpen"
+          <button
+            class="burger-button"
+            (click)="rotateButton()"
+            [class.rotated]="isOpen"
           >
-            <img src="../../../../assets/images/Arrow_menu.svg" alt="Allow menu" class="allow" [class.rotated]="isOpen">
+            <img
+              src="../../../../assets/images/Arrow_menu.svg"
+              alt="Allow menu"
+              class="allow"
+              [class.rotated]="isOpen"
+            >
           </button>
         </div>
       </div>

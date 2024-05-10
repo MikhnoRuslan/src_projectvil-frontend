@@ -30,8 +30,9 @@
   font: 510 16px/120% SF Pro, sans-serif;
   backdrop-filter: blur(42.52089309692383px);
   margin-top: 26px;
-  padding: 0px 26px;
+  padding: 0 26px;
   box-sizing: border-box;
+  color: white;
 }
 
 .name.invalid::placeholder {
@@ -47,8 +48,8 @@
   background-color: var(--Gradient-Secondary-search_gradient, rgba(0, 0, 0, 0.25));
   font: 510 16px/120% SF Pro, sans-serif;
   backdrop-filter: blur(42.52089309692383px);
-  //margin-top: 31px;
-  padding: 0px 26px;
+  color: white;
+  padding: 0 26px;
   box-sizing: border-box;
 }
 
@@ -69,7 +70,7 @@
   background-color: var(--Gradient-Secondary-search_gradient, rgba(0, 0, 0, 0.25));
   font: 510 16px/120% SF Pro, sans-serif;
   backdrop-filter: blur(42.52089309692383px);
-  //margin-top: 31px;
+  color: white;
   padding: 0 50px 0 26px;
   box-sizing: border-box;
   align-items: center;

@@ -33,6 +33,15 @@ export class ForgetPasswordComponent {
     private translationService: TranslateService) {}
 
   submit() {
+    if (!this.form.valid) {
+      Object.keys(this.form.controls).forEach(field => {
+        const control = this.form.get(field) as FormControl;
+        control.markAsTouched({ onlySelf: true });
+      });
+
+      return;
+    }
+
     const {
       email
     } = this.form.getRawValue();

@@ -3,12 +3,6 @@ import {NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet} from 
 import {LanguageComponent} from "../../shared/components/language/language.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {DropdownComponent} from "../../shared/components/dropdown/dropdown.component";
-import {IDomainDto} from "../../../shared/models/domain/domain-dto.model";
-import {
-  IPagedAndSortiedAndFilteredRequestInput
-} from "../../../shared/models/base/pagedAndSortiedAndFilteredRequest.mode";
-import {IPageResultDto} from "../../../shared/models/base/pageResult.model";
-import {DomainService} from "../../core/services/domain.service";
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -27,13 +21,9 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
-  domains: IDomainDto [] = [];
-  domainId: string = '';
 
   constructor(
-    private router: Router,
-    private domainService: DomainService) {
-
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -42,36 +32,6 @@ export class HomeComponent implements OnInit{
         this.scrollToAnchor();
       }
     });
-
-    const request: IPagedAndSortiedAndFilteredRequestInput = {
-      filter: '',
-      sort: '',
-      skip: 1,
-      maxResultCount: 10
-    };
-
-    this.domainService.get(request)
-      .subscribe({
-        next: (data: IPageResultDto<IDomainDto>) => {
-          this.domains = data.items
-        }
-      });
-  }
-
-  test() {
-    const request: IPagedAndSortiedAndFilteredRequestInput = {
-      filter: '',
-      sort: '',
-      skip: 1,
-      maxResultCount: 10
-    };
-
-    this.domainService.get(request)
-      .subscribe({
-        next: (data: IPageResultDto<IDomainDto>) => {
-          this.domains = data.items
-        }
-      });
   }
 
   scrollToAnchor(): void {
@@ -85,21 +45,17 @@ export class HomeComponent implements OnInit{
   }
 
   goHome() {
-    console.log("works")
     this.router.navigate(["/home"]);
   }
 
   enter() {
-    console.log("works")
     this.router.navigate(["/login"]);
   }
 
   registration() {
-    console.log("works")
     this.router.navigate(["/registration"]);
   }
 
   menu() {
-    console.log("works")
   }
 }

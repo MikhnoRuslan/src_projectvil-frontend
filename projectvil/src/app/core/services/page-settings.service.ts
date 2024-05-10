@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IPagedAndSortiedAndFilteredRequestInput } from "../../../shared/models/base/pagedAndSortiedAndFilteredRequest.mode";
-import {HttpParams} from "@angular/common/http";
+import { HttpParams } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class PageSettingsService {
     }
 
     if (requestDto.skip !== null && requestDto.skip !== undefined && requestDto.skip >= 0) {
-      params = params.set('skip', requestDto.skip);
+      params = params.set('skipCount', requestDto.skip);
     }
 
     if (requestDto.maxResultCount !== null && requestDto.maxResultCount !== undefined && requestDto.maxResultCount >= 0) {

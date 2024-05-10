@@ -1,0 +1,14 @@
+﻿<div class="navigation-button-container" *ngFor="let item of navigationButtons">
+  <div class="navigation-button">
+    <div class="content-navigation">
+      <button
+        class="nav-button"
+        [style.background-color]="item.isSelected ? '#37373C' : '#1E1F24'"
+        (click)="goTo(item.url)"
+      >
+        <span class="text">{{item.name | translate }}</span>
+        <img src="assets/images/Arrow.png" class="image" alt="">
+      </button>
+    </div>
+  </div>
+</div>

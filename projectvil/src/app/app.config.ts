@@ -11,6 +11,8 @@ import {provideToastr} from "ngx-toastr";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {DefaultLanguage} from "./shared/constants/service.url.constants";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {authInterceptor} from "./core/interceptors/auth.interceptor";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -20,7 +22,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(withInterceptors([errorInterceptor, languageInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, languageInterceptor, authInterceptor])),
     provideAnimations(),
     provideToastr(),
     BrowserModule,
@@ -39,6 +41,6 @@ export const appConfig: ApplicationConfig = {
           deps: [HttpClient],
         },
       }),
-    )
+    ), provideAnimationsAsync()
   ]
 };

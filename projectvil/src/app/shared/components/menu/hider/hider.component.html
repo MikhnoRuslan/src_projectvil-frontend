@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="user">
+    <div class="avatar">
+      <img [src]="avatar" alt="Upload File" class="image">
+    </div>
+    <div class="user-name">
+      <span class="name">{{ 'Hider:Hi' | translate }} {{ userName }}</span>
+    </div>
+  </div>
+  <div class="buttons">
+    <div class="add-project">
+      <button class="green-button" (click)="goToCreateProj()"> {{'Hider:Button:CreateProject' | translate }} </button>
+    </div>
+    <div class="language-container">
+      <app-language class="language"></app-language>
+    </div>
+  </div>
+</div>

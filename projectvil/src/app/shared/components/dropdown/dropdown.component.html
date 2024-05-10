@@ -1,3 +1,8 @@
-<select class="drop-down" [(ngModel)]="selectedValue" ngDefaultControl [title]="title">
-  <option *ngFor="let item of data" [value]="item[valueField]">{{item[textField]}}</option>
-</select>
+<div class="container-list">
+  <mat-form-field class="custom-field">
+    <mat-label>{{ 'DropDown:Placeholder' | translate }}</mat-label>
+    <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onValueChange()">
+      <mat-option *ngFor="let item of data" [value]="item[valueField]">{{item[textField]}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

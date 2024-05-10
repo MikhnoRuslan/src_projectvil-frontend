@@ -5,6 +5,8 @@ import {AppConfig} from "../../../config/config";
 import {BehaviorSubject} from 'rxjs';
 import {MessageService} from "./message.service";
 import {LocalStorageService} from "./local-storage.service"
+import {Access_token} from "../../shared/constants/constants";
+import {jwtDecode} from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class AuthService {
 
   private accessToken: string;
   private refreshToken: string;
-  private isAuthenticated = new BehaviorSubject<boolean>(false);
+  public isAuthenticated = new BehaviorSubject<boolean>(false);
 
   constructor(
     private router: Router,
@@ -47,7 +49,6 @@ export class AuthService {
       }
     }).subscribe({
       next: (response: any) => {
-        console.log('Request successful:', response);
         this.accessToken = response.access_token;
         this.refreshToken = response.refresh_token;
         this.localStorage.setItem('access_token', this.accessToken);
@@ -57,7 +58,6 @@ export class AuthService {
           .then(() => this.messageService.info("Works"));
       },
       complete: () => {
-        console.log('Request completed');
       }
     });
   }
@@ -80,5 +80,27 @@ export class AuthService {
 
   getIsAuthenticated() {
     return this.isAuthenticated.asObservable();
+  }
+
+  getCurrentUserId(): string | null {
+    const token = this.localStorage.getItem(Access_token);
+
+    if (token) {
+      const decoded = jwtDecode(token) as any;
+      return decoded.userId;
+    }
+
+    return null;
+  }
+
+  getCurrentUserName(): string | null {
+    const token = this.localStorage.getItem(Access_token);
+
+    if (token) {
+      const decoded = jwtDecode(token) as any;
+      return decoded.userName;
+    }
+
+    return null;
   }
 }

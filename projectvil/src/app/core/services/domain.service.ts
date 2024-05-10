@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {MessageService} from "./message.service";
 import {map, Observable} from "rxjs";
 import {AppConfig} from "../../../config/config";
 import {IDomainInput} from "../../../shared/models/domain/domain-input.model";
@@ -18,7 +17,6 @@ export class DomainService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
     private pageSettingsService: PageSettingsService) { }
 
   get(data: IDomainInput) : Observable<IPageResultDto<IDomainDto>> {

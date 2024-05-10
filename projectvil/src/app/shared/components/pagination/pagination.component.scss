@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+}
+
+.first-buttons {
+  display: flex;
+}
+
+.page {
+  width: 46px;
+  height: 46px;
+  background-color: #393A3F;
+  margin: 0 9px 0 0;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid var(--Gradient-Secondary-searsh_stroke, rgba(0, 0, 0, 0));
+  cursor: pointer;
+}
+
+.page-number {
+  font-size: 20px;
+  color: white;
+  margin-top: 20px;
+}
+
+.mirror-image {
+  transform: scaleX(-1);
+}

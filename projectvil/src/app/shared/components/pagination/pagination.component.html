@@ -1,0 +1,18 @@
+<div class="pagination" >
+  <button class="page" (click)="previousPage()">
+    <img src="assets/images/Arrow.png" alt="back" class="mirror-image">
+  </button>
+  <div class="first-buttons" *ngFor="let item of pages; let i = index">
+    <button
+      class="page"
+      *ngIf="item.isShow"
+      (click)="choosePage(i + 1)"
+      [style.background-color]="currentPage !== i + 1 ? '#393A3F' : '#757579'"
+    >
+      <span class="page-number">{{item.page}}</span>
+    </button>
+  </div>
+  <button class="page" (click)="nextPage()">
+    <img src="assets/images/Arrow.png" alt="back">
+  </button>
+</div>
