@@ -64,11 +64,13 @@
   "Project:Details:Image": "Photo of the project",
   "Project:Details:Image:Description": "JPEG, PNG, SVG, size up to 5 MB",
   "Project:Details:Documents": "Project gallery",
+  "Project:Details:Position.Open": "Open positions",
 
   "Project:Input:Name": "Enter project name",
   "Project:Input:Description": "Add a project description",
   "Project:Input:Link": "Add a link",
-  "Project:Input:Position": "Enter required items",
+  "Project:Input:Position.Name": "Enter position name",
+  "Project:Input:Position.Description": "Add position description",
 
   "Hider:Button:CreateProject": "Create a project",
   "Hider:Hi": "Hi,"

@@ -1,8 +1,8 @@
-﻿import {Component, Input} from "@angular/core";
-import {NavigationButtonModel} from "../../../../shared/models/navigation-button.model";
-import {NgFor} from "@angular/common";
-import {Router, RouterLink} from "@angular/router";
-import {TranslateModule} from "@ngx-translate/core";
+﻿import { Component, Input } from "@angular/core";
+import { NavigationButtonModel } from "../../../../shared/models/navigation-button.model";
+import { NgFor } from "@angular/common";
+import { Router, RouterLink } from "@angular/router";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +18,6 @@ export class NavigationComponent {
   }
 
   goTo(path: string): void {
-    console.log(path)
     this.router.navigate([path]);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { NavigationComponent } from "../../shared/components/navigation/navigation.component";
 import { NavigationButtonModel } from "../../../shared/models/navigation-button.model";
-import { TranslateService } from "@ngx-translate/core";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import { Router } from "@angular/router";
 import { Subject, Subscription, switchMap, takeUntil } from "rxjs";
 import { LanguageChangeService } from "../../core/services/language-changes.service";
@@ -27,7 +27,8 @@ import { PaginationChangesServiceService } from "../../core/services/pagination-
     AsyncPipe,
     LikeComponent,
     PaginationComponent,
-    NgIf
+    NgIf,
+    TranslateModule
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss'
@@ -125,7 +126,8 @@ export class ProjectComponent implements OnInit {
         imageUrl: x.imageId
           ? `${this.gateway}/${this.service}/${this.entity}/get?id=${x.imageId}`
           : this.defaultProjectAvatar,
-        like: x.like === null ? { projectId: x.id, likes: 0, isLike: false } : x.like
+        like: x.like === null ? { projectId: x.id, likes: 0, isLike: false } : x.like,
+        positions: x.positions
       }));
     });
   }
@@ -166,7 +168,8 @@ export class ProjectComponent implements OnInit {
         imageUrl: x.imageId
           ? `${this.gateway}/${this.service}/${this.entity}/get?id=${x.imageId}`
           : this.defaultProjectAvatar,
-        like: x.like === null ? { projectId: x.id, likes: 0, isLike: false } : x.like
+        like: x.like === null ? { projectId: x.id, likes: 0, isLike: false } : x.like,
+        positions: x.positions
       }));
     })
   }

@@ -8,6 +8,11 @@
   gitUrl: string | null,
   imageId: string | null,
   documentsIds: string[]
+  positions: {
+    name: string,
+    level: number,
+    description: string
+  }[]
 }
 
 export interface IProjectDto {
@@ -26,7 +31,12 @@ export interface IProjectDto {
     projectId: string,
     likes: number,
     isLike: boolean
-  }
+  },
+  positions: {
+    name: string,
+    level: number,
+    description: string
+  }[]
 }
 
 export interface IProjectLikeDto {

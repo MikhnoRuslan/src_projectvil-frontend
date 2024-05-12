@@ -9,9 +9,8 @@
     <div class="description">{{item.description}}</div>
 
     <div class="futer">
-      <div class="position">12 Открытых позиций</div>
+      <div class="position" *ngIf="item.positions && item.positions.length > 0">{{item.positions.length}} {{ 'Project:Details:Position.Open' | translate }}</div>
       <app-like
-
         [isTotal] = "true"
         [total]="item.like.likes"
         [isLike] = "item.like.isLike"

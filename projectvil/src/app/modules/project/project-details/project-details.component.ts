@@ -1,10 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgClass, NgFor, NgStyle } from "@angular/common";
+import { NgClass, NgFor, NgIf, NgStyle} from "@angular/common";
 import { NavigationButtonModel } from "../../../../shared/models/navigation-button.model";
 import { Router, RouterLink } from "@angular/router";
 import { NavigationComponent } from "../../../shared/components/navigation/navigation.component";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
-import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+  FormArray
+} from "@angular/forms";
 import { DropdownComponent } from "../../../shared/components/dropdown/dropdown.component";
 import { Subscription } from "rxjs";
 import { LanguageChangeService } from "../../../core/services/language-changes.service";
@@ -15,6 +22,7 @@ import { ICreateProjectInput } from "../../../../shared/models/project.model";
 import { AuthService } from "../../../core/services/auth.service";
 import { AppConfig } from "../../../../config/config";
 import { Project_Service } from "../../../shared/constants/service.url.constants";
+import {E_POSITION_LEVEL} from "../../../../shared/models/position.model";
 
 const { required, maxLength } = Validators;
 
@@ -30,7 +38,8 @@ const { required, maxLength } = Validators;
     FormsModule,
     NgStyle,
     NgClass,
-    DropdownComponent
+    DropdownComponent,
+    NgIf
   ],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.scss'
@@ -41,7 +50,8 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   listOfProject: string = '';
   nameLength: number = 50;
   descriptionLength: number = 700;
-  positionLength: number = 50;
+  positionDescriptionLength: number = 300;
+  positionLength: number = 30;
   domainService: string = 'api/project-service';
   domainEntity: string = 'domain/domains';
   statusService: string = 'api/project-service';
@@ -57,6 +67,12 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   documents: { id: string; url: string }[] = [];
 
   languageSubscription$!: Subscription;
+
+  positions: { level: number, levelName: string }[] = [
+    { level: E_POSITION_LEVEL.Junior, levelName: E_POSITION_LEVEL[E_POSITION_LEVEL.Junior] },
+    { level: E_POSITION_LEVEL.Middle, levelName: E_POSITION_LEVEL[E_POSITION_LEVEL.Middle] },
+    { level: E_POSITION_LEVEL.Senior, levelName: E_POSITION_LEVEL[E_POSITION_LEVEL.Senior] },
+  ];
 
   constructor(
     private translationService: TranslateService,
@@ -106,13 +122,33 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     name: new FormControl("", [required, maxLength(this.nameLength)]),
     description: new FormControl("", [required, maxLength(this.descriptionLength)]),
     domain: new FormControl("", [required]),
-    positions: new FormControl(null, [required, maxLength(this.positionLength)]),
+    positions: new FormArray([this.addPositionFormGroup()]),
     status: new FormControl("", [required]),
     projectLink: new FormControl(null),
     gitLink: new FormControl(null),
     image: new FormControl(null),
     documents: new FormControl(null)
   })
+
+  addPositionFormGroup(): FormGroup {
+    return new FormGroup({
+      name: new FormControl('', [required, maxLength(this.positionLength)]),
+      level: new FormControl(''),
+      description: new FormControl('', [required, maxLength(this.positionDescriptionLength)])
+    })
+  }
+
+  addNewPosition(): void {
+    const control = this.projectForm.get('positions') as FormArray;
+    control.push(this.addPositionFormGroup());
+  }
+
+  removePosition(): void {
+    const positionsArray = this.projectForm.get('positions') as FormArray;
+    if (positionsArray.length > 0) {
+      positionsArray.removeAt(positionsArray.length - 1);
+    }
+  }
 
   onSubmit(): void {
     const documentIds: string[] = this.documents.map(x => x.id);
@@ -125,11 +161,11 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
         name,
         description,
         domain,
+        positions,
         status,
         projectLink,
         gitLink,
-        image,
-        documents
+        image
       } = this.projectForm.getRawValue();
 
       const createProjectInput = {
@@ -137,6 +173,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
         name,
         description,
         domainId: domain,
+        positions,
         statusId: status,
         projectUrl: projectLink,
         gitUrl: gitLink,
@@ -155,19 +192,42 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
         const control = this.projectForm.get(field) as FormControl;
         control.markAsTouched({ onlySelf: true });
       });
+
+      const positionsArray = this.projectForm.get('positions') as FormArray;
+
+      positionsArray.controls.forEach(control => {
+        const positionControl = control as FormGroup;
+        Object.keys(positionControl.controls).forEach(field => {
+          const positionFieldControl = positionControl.get(field) as FormControl;
+          positionFieldControl.markAsTouched({ onlySelf: true });
+        });
+      });
     }
   }
 
-  getCount(controlName: string): number {
-    const value = this.projectForm.get(controlName)?.value;
-    if (value) {
-      return value.toString().length;
-    } else return 0;
+  getCount(controlName: string, positionIndex: number | undefined = undefined): number {
+    let controlValue: any;
+    if (positionIndex !== undefined) {
+      const positionsArray = this.projectForm.get('positions') as FormArray;
+      const positionForm = positionsArray.at(positionIndex) as FormGroup;
+      controlValue = positionForm.get(controlName)?.value;
+    } else {
+      controlValue = this.projectForm.get(controlName)?.value;
+    }
+
+    return controlValue ? controlValue.toString().length : 0;
   }
 
-  onValueChange(value: any, controlName: string) {
-    const control = this.projectForm.get(controlName) as FormControl;
-    control.setValue(value);
+  onValueChange(value: any, controlName: string, positionIndex: number | undefined = undefined) {
+    if (positionIndex !== undefined) {
+      const positionsArray = this.projectForm.get('positions') as FormArray;
+      const positionForm = positionsArray.at(positionIndex) as FormGroup;
+      const control = positionForm.get(controlName) as FormControl
+      control.setValue(value);
+    } else {
+      const control = this.projectForm.get(controlName) as FormControl;
+      control.setValue(value);
+    }
   }
 
   loadFile(event: any): void {

@@ -43,6 +43,8 @@ export class DropdownComponent implements OnInit, OnDestroy {
   @Input() serviceName: string = '';
   @Input() entity: string = '';
   @Input() load: boolean = false;
+  @Input() static: boolean = false;
+  @Input() dataInput: { [key: string]: any }[] = [];
 
   @Output() valueChange = new EventEmitter<any>();
   languageSubscription$!: Subscription;
@@ -65,17 +67,21 @@ export class DropdownComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getData(this.input).subscribe(result => {
-      if (result) {
-        this.data = result.items
-      }
-    })
+    if (this.static) {
+      this.data = this.dataInput;
+    } else {
+      this.getData(this.input).subscribe(result => {
+        if (result) {
+          this.data = result.items
+        }
+      })
 
-    this.subscribeLanguageChanges();
+      this.subscribeLanguageChanges();
+    }
   }
 
   ngOnDestroy(): void {
-    this.languageSubscription$.unsubscribe();
+    this.languageSubscription$?.unsubscribe();
   }
 
   subscribeLanguageChanges():void {

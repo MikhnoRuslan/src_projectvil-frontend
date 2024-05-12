@@ -214,9 +214,9 @@ button.toast-close-button {
 
  /*drop-down*/
 .custom-field .mat-mdc-form-field-flex {
-  height: 40px;
+  height: 46px;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 23px;
 }
 
 .mat-pseudo-checkbox {
@@ -304,8 +304,8 @@ button.toast-close-button {
 }
 
 .mat-mdc-select-arrow-wrapper {
-  width: 24px !important;
-  border-radius: 12px !important;
+  width: 26px !important;
+  border-radius: 13px !important;
   margin: 14px -7px 0 0 !important;
   transition: transform 0.3s ease;
   transform-origin: center;

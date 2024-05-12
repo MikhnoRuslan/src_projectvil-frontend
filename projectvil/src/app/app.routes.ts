@@ -7,11 +7,12 @@ import { ProjectDetailsComponent } from "./modules/project/project-details/proje
 import { MenuLayerComponent } from "./shared/components/menu/menu-layer/menu-layer.component";
 import { ProjectComponent } from "./modules/project/project.component";
 import { ProjectParticipantComponent } from "./modules/project/project-paticipant/project-participant.component";
+import {authGuard} from "./core/guards/auth.guard";
 
 const menuItems: Routes = [
-  { path: 'project/details', component: ProjectDetailsComponent },
-  { path: 'project/isOwner/true', component: ProjectComponent },
-  { path: 'project/isOwner/false', component: ProjectParticipantComponent },
+  { path: 'project/details', component: ProjectDetailsComponent, canActivate: [authGuard] },
+  { path: 'project/isOwner/true', component: ProjectComponent, canActivate: [authGuard] },
+  { path: 'project/isOwner/false', component: ProjectParticipantComponent, canActivate: [authGuard] },
 ]
 
 export const routes: Routes = [
@@ -20,5 +21,5 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'forget-password', component: ForgetPasswordComponent },
-  { path: 'menu', component: MenuLayerComponent, children: menuItems },
+  { path: 'menu', component: MenuLayerComponent, children: menuItems, canActivate: [authGuard] },
 ];

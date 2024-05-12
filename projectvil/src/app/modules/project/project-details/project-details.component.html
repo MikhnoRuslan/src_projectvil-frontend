@@ -3,7 +3,7 @@
 <form
   [formGroup]="projectForm"
   novalidate
-  (ngSubmit)="onSubmit()"
+
 >
  <div class="form-control">
    <div class="name-control">
@@ -52,6 +52,7 @@
 
      <div class="input-container">
        <textarea
+         class="textarea"
          placeholder="{{'Project:Input:Description' | translate}}"
          formControlName="description"
          [ngClass]="{ invalid: projectForm.controls.description.invalid && projectForm.controls.description.touched }">
@@ -90,7 +91,7 @@
 
    <div class="position-control">
      <div>
-       <div class="title-name">
+       <div class="title-position">
          {{ 'Project:Details:Position' | translate }}
        </div>
        <div class="required">
@@ -102,21 +103,68 @@
        [style.color]="projectForm.controls.positions.invalid && projectForm.controls.positions.touched ? 'red' : '#393A3F'">
        {{ 'Error:Required' | translate }}
      </div>
-     <div class="input-container">
-       <input
-         class="input-control"
-         placeholder="{{'Project:Input:Position' | translate}}"
-         formControlName="positions"
-         [ngClass]="{ invalid: projectForm.controls.positions.invalid && projectForm.controls.positions.touched }"
-       >
-       <div
-         class="count"
-         [style.color]="projectForm.controls.positions.invalid && projectForm.controls.positions.touched ? 'red' : '#828180'"
-       >{{getCount('positions')}}/{{positionLength}}</div>
+
+     <div formArrayName="positions" >
+       <div *ngFor="let position of projectForm.controls['positions'].controls; let i = index" [formGroupName]="i" class="position-block">
+         <div class="position-main-info">
+           <div class="position-name">
+             <input
+               id="positionName{{ i }}"
+               class="input-position-control"
+               placeholder="{{'Project:Input:Position.Name' | translate}}"
+               formControlName="name"
+               [ngClass]="{ invalid: projectForm.controls['positions'].controls.at(i)?.get('name')?.invalid && projectForm.controls['positions'].controls.at(i)?.get('name')?.touched }"
+             >
+             <div
+               class="count-position-name"
+               [style.border-color]="projectForm.controls['positions'].controls.at(i)?.get('name')?.invalid
+                 && projectForm.controls['positions'].controls.at(i)?.get('name')?.touched ? 'red' : '#828180'"
+             >{{getCount('name', i)}}/{{positionLength}}</div>
+           </div>
+           <div class="dropdown-positions">
+             <app-dropdown
+               class="dropdown"
+               [valueField]="'level'"
+               [textField]="'levelName'"
+               [dataInput]="positions"
+               [static]="true"
+               (valueChange)="onValueChange($event, 'level', i)"
+               ngDefaultControl>
+             </app-dropdown>
+           </div>
+         </div>
+
+         <div class="position-description">
+           <textarea
+             class="position-textarea"
+             placeholder="{{'Project:Input:Position.Description' | translate}}"
+             formControlName="description"
+             [ngClass]="{ invalid: projectForm.controls['positions'].controls.at(i)?.get('description')?.invalid
+               && projectForm.controls['positions'].controls.at(i)?.get('description')?.touched }">
+           </textarea>
+           <div
+             class="count-description-position"
+             [style.color]="projectForm.controls['positions'].controls.at(i)?.get('description')?.invalid
+               && projectForm.controls['positions'].controls.at(i)?.get('description')?.touched ? 'red' : '#828180'"
+           >{{getCount('description', i)}}/{{positionDescriptionLength}}</div>
+         </div>
+
+         <div class="add-position">
+           <button
+             (click)="addNewPosition()"
+             class="position-button-add"
+           >+</button>
+           <button
+             *ngIf="i > 0"
+             (click)="removePosition()"
+             class="position-button-remove"
+           >-</button>
+         </div>
+       </div>
      </div>
    </div>
 
-   <div class="position-control">
+   <div class="domain-control">
      <div>
        <div class="title-name">
          {{ 'Project:Details:Status' | translate }}
@@ -214,7 +262,7 @@
    </div>
 
    <div class="create-button">
-     <button class="green-button">{{ 'Hider:Button:CreateProject' | translate }}</button>
+     <button (click)="onSubmit()" class="green-button">{{ 'Hider:Button:CreateProject' | translate }}</button>
    </div>
  </div>
 </form>
