@@ -20,6 +20,9 @@ jobs:
       with:
         node-version: '18'
 
+    - name: Change directory projectvil
+      run: cd projectvil
+
     - name: Install dependencies
       run: npm install
 
