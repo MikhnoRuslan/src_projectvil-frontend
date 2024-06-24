@@ -3,6 +3,8 @@
 
   "Success:CreateProject": "The project was successfully created.",
 
+  "Info:CreateProject": "You must be logged in to create a project",
+
   "Home:Title": "Look and create!",
   "Home:Signin": "Sign in",
   "Home:Signup": "Sign up",
@@ -23,6 +25,7 @@
   "Menu:Chat": "Chat",
   "Menu:Question-circle": "Information",
   "Menu:Gear": "Settings",
+  "Menu:Logout": "Log out",
 
   "Auth:Signin": "Sign in",
   "Auth:Email": "Email",
@@ -65,6 +68,12 @@
   "Project:Details:Image:Description": "JPEG, PNG, SVG, size up to 5 MB",
   "Project:Details:Documents": "Project gallery",
   "Project:Details:Position.Open": "Open positions",
+  "Project:Details:Gallery": "Project gallery",
+  "Project:Details:Members": "Project team",
+  "Project:Details:Vacations": "Open positions",
+  "Project:Details:Respond": "Respond",
+  "Project:Details:Comments": "Comments",
+  "Project:Details:Comment:Enter": "Add comment",
 
   "Project:Input:Name": "Enter project name",
   "Project:Input:Description": "Add a project description",
@@ -73,5 +82,9 @@
   "Project:Input:Position.Description": "Add position description",
 
   "Hider:Button:CreateProject": "Create a project",
-  "Hider:Hi": "Hi,"
+  "Hider:Hi": "Hi,",
+
+  "Search": "Search",
+
+  "Common:Project:Title": "Projects"
 }

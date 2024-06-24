@@ -1,10 +1,9 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { NgIf } from "@angular/common";
-import {concatMap, mergeMap, Observable, Subject, Subscription, switchMap} from "rxjs";
-import { AppConfig } from "../../../../config/config";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { Observable, Subject, Subscription } from "rxjs";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { IProjectLikeDto } from "../../../../shared/models/project.model";
-import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'app-like',
@@ -18,23 +17,23 @@ export class LikeComponent implements OnInit, OnDestroy, OnChanges {
   @Input() isLike: boolean = false;
 
   @Input() isTotal: boolean = false;
-  @Input() serviceName: string = '';
   @Input() entityName: string = '';
 
-  private gateway = AppConfig.url;
+  private readonly gateway: string = '';
   likeChanged$: Subject<string> = new Subject<string>();
   likeSubscription$!: Subscription;
-  image: string = '../../../../assets/images/heart.png'
+  image: string = '../../../../assets/images/heart.svg'
 
   constructor(
     private http: HttpClient
   ) {
+    this.gateway = environment.issuer;
   }
 
   ngOnInit(): void {
     this.image = this.isLike
       ? '../../../../assets/images/heart-fill.png'
-      : '../../../../assets/images/heart.png';
+      : '../../../../assets/images/heart.svg';
 
     this.subscribeToLikeChanges();
   }
@@ -48,7 +47,7 @@ export class LikeComponent implements OnInit, OnDestroy, OnChanges {
       }
     } else if (!changes['isLike'].currentValue) {
       this.isLike = false;
-      this.image = '../../../../assets/images/heart.png'
+      this.image = '../../../../assets/images/heart.svg'
       if (this.isTotal && this.total > 0) {
         this.total -= 1;
       }
@@ -66,7 +65,7 @@ export class LikeComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   like(projectId: string): Observable<IProjectLikeDto> {
-    const url = `${this.gateway}/${this.serviceName}/${this.entityName}`
+    const url = `${this.gateway}/${this.entityName}`
 
     const body = JSON.stringify(projectId);
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');

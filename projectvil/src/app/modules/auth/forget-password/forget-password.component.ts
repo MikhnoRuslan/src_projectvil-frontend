@@ -5,6 +5,7 @@ import { ForgetPasswordService } from "../../../core/services/forget-password.se
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {MessageService} from "../../../core/services/message.service";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {ROUTES} from "../../../shared/constants/routes";
 
 @Component({
   selector: 'app-forget-password',
@@ -53,7 +54,7 @@ export class ForgetPasswordComponent {
     this.forgetPasswordService.resetPassword(resetPasswordInput)
       .subscribe({
         next: (response: any) => {
-          this.router.navigate(["/login"])
+          this.router.navigate([ROUTES.login])
             .then(() => this.messageService
               .info(this.translationService.instant('ForgetPassword:Notification:New-password')))
         }

@@ -3,21 +3,24 @@
     <div class="title">{{ 'Auth:Signin' | translate }}</div>
     <form [formGroup]="form">
       <div>
-        <input class="name"
-               type="email"
-               placeholder="{{ 'Auth:Email' | translate }}"
-               formControlName="email"
+        <input
+          class="name"
+          type="email"
+          placeholder="{{ 'Auth:Email' | translate }}"
+          formControlName="email"
         >
         <div class="password-container">
-          <input class="password"
-                 type="{{ showPassword ? 'text' : 'password' }}"
-                 placeholder="{{ 'Auth:Password' | translate }}"
-                 formControlName="password"
+          <input
+            class="password"
+            type="{{ showPassword ? 'text' : 'password' }}"
+            placeholder="{{ 'Auth:Password' | translate }}"
+            formControlName="password"
           >
-          <button class="show-password"
-                  type="button"
-                  aria-label="Show the password"
-                  (click)="togglePasswordVisibility()"
+          <button
+            class="show-password"
+            type="button"
+            aria-label="Show the password"
+            (click)="togglePasswordVisibility()"
           >
             <img src="../../../../assets/images/eye.svg" class="img-eye" alt="Show the password">
           </button>
@@ -25,7 +28,7 @@
       </div>
       <div class="enter-wrapper">
         <button class="create-project" (click)="login()">{{ 'Auth:Signin' | translate }}</button>
-        <a [routerLink]="['/registration']" class="enter">
+        <a [routerLink]="[registration]" class="enter">
           <span>{{ 'Auth:Signup' | translate }}</span>
         </a>
       </div>
@@ -33,7 +36,7 @@
         <input type="checkbox" id="myCheckbox" name="myCheckbox" class="checkbox-custom">
         {{ 'Auth:Remember' | translate }}
       </label>
-      <a [routerLink]="['/forget-password']" class="forget-password">
+      <a [routerLink]="[forgetPassword]" class="forget-password">
         <span>{{ 'Auth:Forget-password' | translate }}</span>
       </a>
     </form>

@@ -1,25 +1,24 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {AppConfig} from "../../../config/config";
-import {BehaviorSubject} from 'rxjs';
-import {MessageService} from "./message.service";
-import {LocalStorageService} from "./local-storage.service"
-import {Access_token} from "../../shared/constants/constants";
-import {jwtDecode} from "jwt-decode";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import { MessageService } from "./message.service";
+import { LocalStorageService } from "./local-storage.service"
+import { Access_token, IsAuthenticated, Refresh_token } from "../../shared/constants/constants";
+import { jwtDecode } from "jwt-decode";
+import { ROUTES } from "../../shared/constants/routes";
+import { environment } from "../../../environments/environment";
+import {IAuthModel, IAuthorizationDto} from "../../../shared/models/auth/auth.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private authServerUrl = AppConfig.issuer;
-  private tokenEndpoint = `${this.authServerUrl}/connect/token`;
-  private clientId = AppConfig.clientId;
-  private redirectUri = `${AppConfig.baseUrl}/callback`;
-  private logoutUri = AppConfig.baseUrl;
-  private scopes = AppConfig.scope;
-  private secret = AppConfig.secret;
-
+  private readonly authServerUrl: string = '';
+  private readonly clientId: string = '';
+  private readonly scopes: string = '';
+  private readonly secret: string = '';
+  private readonly logoutUri: string = '';
   private accessToken: string;
   private refreshToken: string;
   public isAuthenticated = new BehaviorSubject<boolean>(false);
@@ -28,22 +27,20 @@ export class AuthService {
     private router: Router,
     private http: HttpClient,
     private messageService: MessageService,
-    private localStorage: LocalStorageService) {
+    private localStorage: LocalStorageService
+  ) {
     this.accessToken = '';
     this.refreshToken = '';
+    this.authServerUrl = environment.issuer;
+    this.logoutUri = environment.baseUrl;
   }
 
-  login(username: string, password: string) {
-    const tokenEndpoint = `${this.authServerUrl}/connect/token`;
+  /*login(username: string, password: string) {
     const payload = new URLSearchParams();
-    payload.set('grant_type', 'password');
-    payload.set('client_id', this.clientId);
-    payload.set('scope', this.scopes);
-    payload.set('client_secret', this.secret);
     payload.set('username', username);
     payload.set('password', password);
 
-    this.http.post(tokenEndpoint, payload.toString(), {
+    this.http.post(`${this.authServerUrl}/authservice/login`, payload.toString(), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
@@ -51,35 +48,53 @@ export class AuthService {
       next: (response: any) => {
         this.accessToken = response.access_token;
         this.refreshToken = response.refresh_token;
-        this.localStorage.setItem('access_token', this.accessToken);
-        this.localStorage.setItem('refresh_token', this.refreshToken);
+        this.localStorage.setItem('Access_token', this.accessToken);
+        this.localStorage.setItem('Refresh_token', this.refreshToken);
+        this.localStorage.setItem('IsAuthenticated', 'true')
         this.isAuthenticated.next(true);
-        this.router.navigate(['home'])
-          .then(() => this.messageService.info("Works"));
+        this.router.navigate(['/' + ROUTES.home]);
+      },
+      error: (error: any) => {
+        console.error('Login error', error);
+        // Дополнительная обработка ошибок, если необходимо
       },
       complete: () => {
       }
     });
+  }*/
+
+  login(input: IAuthModel) {
+    const url = `${this.authServerUrl}/authservice/login`;
+
+    this.http.post<IAuthorizationDto>(url, input).subscribe(res => {
+      this.accessToken = res.accessToken;
+      this.refreshToken = res.refreshToken;
+      this.localStorage.setItem(Access_token, this.accessToken);
+      this.localStorage.setItem(Refresh_token, this.refreshToken);
+      this.localStorage.setItem(IsAuthenticated, 'true')
+      this.isAuthenticated.next(true);
+      this.router.navigate(['/' + ROUTES.home]);
+    })
   }
 
   logout() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    this.localStorage.removeItem(Access_token);
+    this.localStorage.removeItem(Refresh_token);
+    this.localStorage.removeItem(IsAuthenticated);
+
     this.isAuthenticated.next(false);
-    window.location.href = this.authServerUrl + '/connect/endsession' +
-      '?id_token_hint=' + localStorage.getItem('id_token') +
-      '&post_logout_redirect_uri=' + this.logoutUri;
+    window.location.href = this.logoutUri + '/' + ROUTES.home;
   }
 
   getAccessToken() {
     if (!this.accessToken) {
-      this.accessToken = <string>localStorage.getItem('access_token');
+      this.accessToken = <string>localStorage.getItem(Access_token);
     }
     return this.accessToken;
   }
 
   getIsAuthenticated() {
-    return this.isAuthenticated.asObservable();
+    return this.localStorage.getItem(IsAuthenticated) === 'true';
   }
 
   getCurrentUserId(): string | null {

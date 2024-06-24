@@ -8,6 +8,7 @@ import { IUserRegistrationModel } from "../../../../shared/models/auth/registrat
 import { RegistrationService } from "../../../core/services/registration.service";
 import { MessageService } from "../../../core/services/message.service";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import {ROUTES} from "../../../shared/constants/routes";
 
 @Component({
   selector: 'app-registration',
@@ -28,6 +29,7 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 export class RegistrationComponent {
   showPassword: boolean = false;
+  login = '/' + ROUTES.login;
 
   constructor(
     private router: Router,
@@ -76,7 +78,7 @@ export class RegistrationComponent {
     this.registrationService.create(userRegistrationInput)
       .subscribe({
         next: (response: any) => {
-          this.router.navigate(["/login"])
+          this.router.navigate([this.login])
             .then(() => this.messageService.info(this.translationService.instant('Registration:Notification:Confirm')));
         }
       });
@@ -87,6 +89,6 @@ export class RegistrationComponent {
   }
 
   registration() {
-    this.router.navigate(["/login"]);
+    this.router.navigate([this.login]);
   }
 }

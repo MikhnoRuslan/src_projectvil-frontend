@@ -1,5 +1,4 @@
 ﻿import { Injectable } from "@angular/core";
-import { AppConfig } from "../../../config/config";
 import { HttpClient } from "@angular/common/http";
 import { PageSettingsService } from "./page-settings.service";
 import {
@@ -8,30 +7,37 @@ import {
 import { Observable } from "rxjs";
 import { IPageResultDto } from "../../../shared/models/base/pageResult.model";
 import { ICreateProjectInput, IProjectDto } from "../../../shared/models/project.model";
-import { Project_Service } from "../../shared/constants/service.url.constants";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  private gateway = AppConfig.url;
-  private entity = 'project';
+  private readonly gateway: string = '';
+  private readonly entity: string = 'project';
 
   constructor(
     private http: HttpClient,
     private pageSettingsService: PageSettingsService
   ) {
+    this.gateway = environment.issuer;
+  }
+
+  get(id: string): Observable<IProjectDto> {
+    const url = `${this.gateway}/${this.entity}/${id}`;
+
+    return this.http.get<IProjectDto>(url)
   }
 
   getList(data: IPagedAndSortiedAndFilteredRequestInput): Observable<IPageResultDto<IProjectDto>> {
     const params = this.pageSettingsService.createParams(data);
-    const url = `${this.gateway}/${Project_Service}/${this.entity}/projects`;
+    const url = `${this.gateway}/${this.entity}/projects`;
 
     return this.http.get<IPageResultDto<IProjectDto>>(url, {params});
   }
 
   create(input: ICreateProjectInput): Observable<IProjectDto> {
-    const url = `${this.gateway}/${Project_Service}/${this.entity}/create-project`;
+    const url = `${this.gateway}/${this.entity}/create-project`;
 
     return this.http.post<IProjectDto>(url, input);
   }

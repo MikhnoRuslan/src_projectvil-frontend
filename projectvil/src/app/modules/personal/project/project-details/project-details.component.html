@@ -1,0 +1,111 @@
+<div class="main">
+  <div class="main-info">
+    <div class="main-info-block">
+      <div class="name">{{ data?.name }}</div>
+      <div class="text">{{ data?.projectUrl }}</div>
+      <span class="status">{{ data?.domainName }}</span>
+    </div>
+  </div>
+  <div class="first-block">
+    <div class="description-block">
+      <span class="label text">{{ 'Project:Details:Description' | translate }}</span>
+      <div class="description text">{{ data?.description }}</div>
+    </div>
+    <div class="documents-block">
+      <span class="label text">{{ 'Project:Details:Gallery' | translate }}</span>
+      <div class="documents">
+        <app-slider
+          [images]="images"
+        ></app-slider>
+      </div>
+    </div>
+  </div>
+  <!--<div class="members-block">
+    <span class="label text">{{ 'Project:Details:Members' | translate }}</span>
+    <div class="members">
+
+    </div>
+  </div>-->
+
+  <div class="vacancies-block">
+    <span class="label text">{{ 'Project:Details:Vacations' | translate }}</span>
+    <div class="list-vacations" #scrollContainer (mousedown)="onMouseDown($event)" (wheel)="onWheel($event)">
+      <div class="vacation-info" *ngFor="let position of data?.positions">
+        <div class="vacation">
+          <div class="vacation-name">{{ position.name}}</div>
+          <div class="level">
+            <span>{{ getLevelString(position.level) }}</span>
+          </div>
+        </div>
+        <div class="vacation-description">{{ position.description }}</div>
+        <div class="respond">
+          <button
+            (click)="respond()"
+            class="green-button respond">{{ 'Project:Details:Respond' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comments-block">
+    <span class="label text">{{ 'Project:Details:Comments' | translate }}</span>
+
+    <form
+      [formGroup]="formComment"
+      class="form-comment"
+      (ngSubmit)="onSubmit()"
+      novalidate
+    >
+      <div class="flex">
+        <div class="icon">
+          <img
+            [src]="icon"
+            alt=""
+            class="image"
+          >
+        </div>
+        <input
+          class="comment-input"
+          placeholder="{{ 'Project:Details:Comment:Enter' | translate }}"
+          formControlName="comment"
+        >
+        <button type="submit" style="display: none;"></button>
+      </div>
+    </form>
+
+    <div class="comments">
+      <div class="flex">
+        <div class="icon">
+          <img
+            [src]="icon"
+            alt=""
+            class="image"
+          >
+        </div>
+        <div class="info">
+          <div class="user">User Name</div>
+          <div class="comment">I tried some tricks like centralizing the file service with locking to address the issue, but this caused the average response time to skyrocket to around 4–5 seconds during local performance testing.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments">
+      <div class="flex">
+        <div class="icon">
+          <img
+            [src]="icon"
+            alt=""
+            class="image"
+          >
+        </div>
+        <div class="info">
+          <div class="user">User Name</div>
+          <div class="comment">I tried some tricks like centralizing the file service with locking to address the issue, but this caused the average response time to skyrocket to around 4–5 seconds during local performance testing.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--<p>{{data | json}}</p>-->
+</div>

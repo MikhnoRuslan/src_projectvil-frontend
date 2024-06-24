@@ -4,10 +4,10 @@
   margin: 40px 0 40px 0;
 }
 
-.image {
-  width: 56px;
-  height: 56px;
-  border-radius: 28px;
+.avatar {
+  margin: auto 0 auto auto;
+  width: 38px;
+  cursor: pointer;
 }
 
 .name {
@@ -15,7 +15,7 @@
   font-size: 40px;
   font-family: 'SF Pro', sans-serif;
   text-align: center;
-  padding-top: 5px;
+  margin: auto 0;
 }
 
 .user-name {
@@ -34,20 +34,76 @@
 }
 
 .add-project {
-  width: 218px;
+  width: 268px;
+  display: flex;
+}
 
+.add-project-common {
+  //width: 401px;
+  width: auto;
+  display: flex;
 }
 
 .language-container {
+  position: absolute;
+  right: 40px;
   display: flex;
-  padding-right: 11px;
+}
+
+.language-container-common {
+  position: absolute;
+  display: flex;
+  right: 40px;
 }
 
 .buttons {
-  margin: 7px 30px 7px auto;
+  margin: 7px 45px 7px auto;
   display: flex;
 }
 
-.language {
-  position: absolute;
+.links {
+  margin: 0 0 0 10px;
+}
+
+.about,
+.projects,
+.participants,
+.vacancies {
+  color: white;
+  font-size: 20px;
+  width: 170px;
+  padding: 7px 0 7px 0;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  margin: auto;
+}
+
+.button-enter {
+  width: 130px;
+  height: 48px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 24px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.button-enter:active, button-registration:active {
+  background-color: #e0e0e0; /* Цвет фона при нажатии (серый тон) */
+  color: #666666;
+}
+
+.button-registration {
+  width: 185px;
+  height: 48px;
+  cursor: pointer;
+  border-radius: 24px;
+  font-weight: bold;
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  border: 2px solid white;
+  margin: 0 55px 0 10px;
 }

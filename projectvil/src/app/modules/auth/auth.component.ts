@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } 
 import { AuthService } from "../../core/services/auth.service";
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
+import {ROUTES} from "../../shared/constants/routes";
+import {IAuthModel} from "../../../shared/models/auth/auth.model";
 
 @Component({
   selector: 'app-auth',
@@ -12,6 +14,9 @@ import {TranslateModule} from "@ngx-translate/core";
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent{
+  registration = '/' + ROUTES.registration;
+  forgetPassword = '/' + ROUTES.forgetPassword;
+
   constructor(private authService : AuthService, private router: Router) {}
   showPassword: boolean = false;
   form = new FormGroup({
@@ -32,14 +37,16 @@ export class AuthComponent{
   }
 
   login() {
-    this.authService.login(<string>this.form.value.email, <string>this.form.value.password);
-  }
+    const {
+      email,
+      password
+    } = this.form.getRawValue();
 
-  registration() {
-    this.router.navigate(["/registration"]);
-  }
+    const input = {
+      email,
+      password
+    } as IAuthModel;
 
-  forgetPassword() {
-    this.router.navigate(["forget-password"])
+    this.authService.login(input);
   }
 }

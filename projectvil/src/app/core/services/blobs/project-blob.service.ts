@@ -1,22 +1,22 @@
-﻿import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {AppConfig} from "../../../../config/config";
-import {Project_Service} from "../../../shared/constants/service.url.constants";
+﻿import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })export class ProjectBlobService {
-  private gateway = AppConfig.url;
-  private entity = 'petprojectblob';
+  private readonly gateway: string = '';
+  private entity = 'projectblob';
 
   constructor(
     private http: HttpClient
   ) {
+    this.gateway = environment.issuer;
   }
 
   get(id: string): Observable<any> {
-    const url = `${this.gateway}/${Project_Service}/${this.entity}/get`;
+    const url = `${this.gateway}/${this.entity}/get`;
     const params = { id };
     return this.http.get<any>(url, {params})
   }
@@ -25,7 +25,7 @@ import {Project_Service} from "../../../shared/constants/service.url.constants";
     const formData = new FormData();
     formData.append('file', file);
 
-    const url = `${this.gateway}/${Project_Service}/${this.entity}/create`;
+    const url = `${this.gateway}/${this.entity}/create`;
 
     return this.http.post<any>(url, formData);
   }

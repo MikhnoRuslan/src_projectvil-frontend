@@ -4,8 +4,9 @@ import { throwError, catchError } from 'rxjs';
 import { MessageService } from "../services/message.service";
 import { Router } from "@angular/router";
 import { LocalStorageService } from "../services/local-storage.service";
-import { Access_token } from "../../shared/constants/constants";
+import {Access_token, IsAuthenticated, Refresh_token} from "../../shared/constants/constants";
 import { AuthService } from "../services/auth.service";
+import {ROUTES} from "../../shared/constants/routes";
 
 export const errorInterceptor: HttpInterceptorFn = (req : HttpRequest<any>, next : HttpHandlerFn) => {
   const messageService: MessageService = inject(MessageService);
@@ -18,10 +19,11 @@ export const errorInterceptor: HttpInterceptorFn = (req : HttpRequest<any>, next
 
       if (error.status === 401) {
         localstorageService.removeItem(Access_token);
-        localstorageService.removeItem('refresh_token');
+        localstorageService.removeItem(Refresh_token);
+        localstorageService.removeItem(IsAuthenticated);
         authService.isAuthenticated.next(false);
 
-        route.navigate(['/login'])
+        route.navigate([ROUTES.login])
           .then(() => messageService.info("login"))
 
         return throwError(() => error);

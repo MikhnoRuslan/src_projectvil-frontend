@@ -6,21 +6,23 @@ import { PageSettingsService } from "./page-settings.service";
 import {
   IPagedAndSortiedAndFilteredRequestInput
 } from "../../../shared/models/base/pagedAndSortiedAndFilteredRequest.mode";
-import { AppConfig } from "../../../config/config";
 import { IPageResultDto } from "../../../shared/models/base/pageResult.model";
 import { IStatusDto } from "../../../shared/models/status/status-dto.model";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectStatusService {
-  private gateway = AppConfig.url;
-  private entity = 'status';
+  private readonly gateway: string = '';
+  private readonly entity: string = 'status';
 
   constructor(
     private http: HttpClient,
     private pageSettingsService: PageSettingsService
-  ) { }
+  ) {
+    this.gateway = environment.url;
+  }
 
   get(data: IPagedAndSortiedAndFilteredRequestInput) : Observable<IPageResultDto<IStatusDto>> {
     const params = this.pageSettingsService.createParams(data);

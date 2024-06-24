@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { AppConfig } from "../../../config/config";
-import { Identity_Service } from "../../shared/constants/service.url.constants";
 import { IUserRegistrationModel } from "../../../shared/models/auth/registration/user.registration.model";
 import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
+  private readonly gateway: string = '';
 
-  constructor(private http: HttpClient) { }
-  private gateway = AppConfig.url;
+  constructor(private http: HttpClient) {
+    this.gateway = environment.issuer;
+  }
 
   create(user: IUserRegistrationModel) : Observable<void> {
-    return this.http.post<void>(`${this.gateway}/${Identity_Service}/identity/create`, user);
+    return this.http.post<void>(`${this.gateway}/user/create`, user);
   }
 }

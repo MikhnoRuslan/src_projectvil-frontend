@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { NgFor, NgIf } from "@angular/common";
 import { PaginationChangesServiceService } from "../../../core/services/pagination-changes.service.service";
+import {SearchService} from "../../../core/services/search.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-pagination',
@@ -12,7 +14,7 @@ import { PaginationChangesServiceService } from "../../../core/services/paginati
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss'
 })
-export class PaginationComponent implements OnInit  {
+export class PaginationComponent implements OnInit, OnDestroy {
   @Input() pageCount!: number;
   @Input() take: number = 0;
 
@@ -21,8 +23,11 @@ export class PaginationComponent implements OnInit  {
 
   sizeShowingPage = 5;
 
+  searchSubscription$!: Subscription;
+
   constructor(
-    private paginationChangesService: PaginationChangesServiceService
+    private paginationChangesService: PaginationChangesServiceService,
+    private searchService: SearchService
   ) {
   }
 
@@ -34,6 +39,28 @@ export class PaginationComponent implements OnInit  {
         this.pages.push({ page: i + 1, isShow: true });
       }
     }
+
+    this.subscribeToSearchValueChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.searchSubscription$.unsubscribe();
+  }
+
+  subscribeToSearchValueChanges(): void {
+    this.searchSubscription$ = this.searchService.countChanged$.subscribe(res => {
+      this.pageCount = res;
+      this.currentPage = 1;
+
+      this.pages = [];
+      for (let i = 0; i < this.pageCount; i++) {
+        if (i >= this.sizeShowingPage) {
+          this.pages.push({ page: i + 1, isShow: false });
+        } else {
+          this.pages.push({ page: i + 1, isShow: true });
+        }
+      }
+    })
   }
 
   choosePage(pageNumber: number): void {

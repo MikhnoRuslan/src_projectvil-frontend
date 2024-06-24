@@ -67,7 +67,7 @@
   aspect-ratio: 1;
   object-position: center;
   width: 24px;
-  padding: 1.5px 0px;
+  padding: 1.5px 0;
 }
 
 .create-project {
@@ -81,6 +81,10 @@
   color: var(--Primary-white_primary, #fff);
   margin: 0;
   border: 1px solid var(--Gradient-Secondary-searsh_stroke, rgba(0, 0, 0, 0));
+}
+
+.create-project:active {
+  background-color: #00a01b;
 }
 
 .enter-wrapper {
@@ -320,7 +324,7 @@
     font: 510 16px/120% SF Pro, sans-serif;
     backdrop-filter: blur(42.52089309692383px);
     margin-top: 26px;
-    padding: 0px 26px;
+    padding: 0 26px;
     box-sizing: border-box;
   }
 
@@ -333,7 +337,7 @@
     font: 510 16px/120% SF Pro, sans-serif;
     backdrop-filter: blur(42.52089309692383px);
     margin-top: 16px;
-    padding: 0px 26px;
+    padding: 0 26px;
     box-sizing: border-box;
   }
 
@@ -346,7 +350,7 @@
     font: 510 16px/120% SF Pro, sans-serif;
     backdrop-filter: blur(42.52089309692383px);
     margin-top: 16px;
-    padding: 0px 50px 0px 26px;
+    padding: 0 50px 0 26px;
     box-sizing: border-box;
   }
 
@@ -433,7 +437,7 @@
     aspect-ratio: 1;
     object-position: center;
     width: 24px;
-    padding: 1.5px 0px;
+    padding: 1.5px 0;
   }
 
   .checkbox-custom {

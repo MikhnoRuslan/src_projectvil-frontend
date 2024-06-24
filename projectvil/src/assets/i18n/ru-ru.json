@@ -3,6 +3,8 @@
 
   "Success:CreateProject": "Проект был успешно создан.",
 
+  "Info:CreateProject": "Вы должны войти в систему, чтобы создать проект",
+
   "Home:Title": "Ищи и создавай!",
   "Home:Signin": "Войти",
   "Home:Signup": "Регистрация",
@@ -23,6 +25,7 @@
   "Menu:Chat": "Чат",
   "Menu:Question-circle": "Информация",
   "Menu:Gear": "Настройки",
+  "Menu:Logout": "Выйти",
 
   "Auth:Signin": "Вход",
   "Auth:Email": "Емейл",
@@ -65,6 +68,12 @@
   "Project:Details:Image:Description": "JPEG, PNG, SVG, размер до 5 мб",
   "Project:Details:Documents": "Галерея проекта",
   "Project:Details:Position.Open": "Открытых позиций",
+  "Project:Details:Gallery": "Галерея проекта",
+  "Project:Details:Members": "Команда проекта",
+  "Project:Details:Vacations": "Открытые позиции",
+  "Project:Details:Respond": "Откликнуться",
+  "Project:Details:Comments": "Комментарии",
+  "Project:Details:Comment:Enter": "Добавить коментарий",
 
   "Project:Input:Name": "Введите название проекта",
   "Project:Input:Description": "Добавьте описание проекта",
@@ -73,5 +82,9 @@
   "Project:Input:Position.Description": "Добавьте описание позиции",
 
   "Hider:Button:CreateProject": "Создать проект",
-  "Hider:Hi": "Привет,"
+  "Hider:Hi": "Привет,",
+
+  "Search": "Поиск",
+
+  "Common:Project:Title": "Проекты"
 }

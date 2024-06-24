@@ -1,0 +1,239 @@
+$total-width: calc(100% - 620px);
+.main {
+  max-width: 100%;
+}
+.main-info {
+  border-radius: 30px;
+  width: auto;
+  background-image: url("../../../../../assets/images/projectbackgroundimage.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-sizing: border-box;
+}
+
+.main-info-block {
+  padding: 20px 0 20px 40px;
+}
+
+.name {
+  color:  #FFFFFF;
+  font-size: 64px;
+  font-family: 'SF Pro', sans-serif;
+  padding-bottom: 10px;
+}
+
+.text {
+  color:  #FFFFFF;
+  font-size: 24px;
+  font-family: 'SF Pro', sans-serif;
+}
+
+.status {
+  width: 162px;
+  height: 22px;
+  display: block;
+  border-radius: 12.5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding-top: 4px;
+  margin: 60px 0 0 0;
+  color: white;
+  background-image: url("../../../../../assets/images/status.PNG");
+}
+
+.label {
+  width: 384px;
+  height: 35px;
+  display: block;
+  border-radius: 44px;
+  background-color: rgb(33,34,40);
+  text-align: center;
+  padding-top: 11px;
+  color: white;
+}
+
+.text {
+  color:  #FFFFFF;
+  font-size: 20px;
+  font-family: 'SF Pro', sans-serif;
+}
+
+.first-block {
+  display: flex;
+  margin: 32px 0 0 0;
+
+  .description-block {
+    width: calc(100% - 620px);
+
+    .description {
+      //background-color: rgb(57,58,63);
+      background: linear-gradient(135deg, #626366, #2b2c31);
+
+
+      width: calc(100% - 50px);
+      min-height: 350px;
+      border-radius: 30px;
+      padding: 25px;
+      margin: 32px 0 0 0;
+    }
+  }
+
+  .documents-block {
+    width: 600px;
+    margin: 0 0 0 auto;
+
+    .documents{
+      margin: 32px 0 0 0;
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+    }
+  }
+}
+
+.members-block {
+  margin: 32px 0 0 0;
+}
+
+.vacancies-block {
+  margin: 32px 0 0 0;
+
+  .list-vacations {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+    cursor: grab;
+  }
+
+  .list-vacations:active {
+    cursor: grabbing;
+  }
+
+  .vacation-info {
+    margin: 32px 20px 10px 0;
+    padding: 50px 30px 30px 30px;
+    min-width: 260px;
+    max-width: 260px;
+    min-height: 306px;
+    border-radius: 30px;
+    //background-color: rgb(57,58,63);
+    background: linear-gradient(135deg, #626366, #2b2c31);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .vacation {
+      display: flex;
+
+      .vacation-name,
+      .level {
+        color:  #FFFFFF;
+        font-size: 28px;
+        font-family: 'SF Pro', sans-serif;
+      }
+
+      .level {
+        background-color: rgb(13,110,253);
+        width: 121px;
+        height: 24px;
+        border-radius: 12px;
+        margin: 0 0 0 auto;
+        font-size: 14px;
+        text-align: center;
+        padding-top: 5px;
+      }
+    }
+
+    .vacation-description {
+      margin: 30px 0;
+      color:  #FFFFFF;
+      font-size: 18px;
+      font-family: 'SF Pro', sans-serif;
+    }
+  }
+}
+
+.respond {
+  margin-top: auto
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.comments-block {
+  margin: 32px 0 0 0;
+
+  .form-comment {
+    .icon {
+      margin: 32px 0 32px 35.5px;
+
+      .image {
+        width: 75px;
+        height: 75px;
+        border-radius: 25px;
+      }
+    }
+
+    .comment-input {
+      width: 100%;
+      margin: 45px 41px;
+      color:  #FFFFFF;
+      font-size: 18px;
+      font-family: 'SF Pro', sans-serif;
+      background-color: rgb(28,29,34);
+      height: 40px;
+      border: none;
+      border-bottom: 1px solid rgb(28,29,34);
+    }
+
+    .comment-input:focus {
+      border-bottom-color: #FFFFFF;
+      outline: none;
+    }
+  }
+
+  .comments {
+    margin: 0 0 40px 0;
+    min-height: 150px;
+    width: 100%;
+    border-radius: 30px;
+    border: 2px solid rgb(67,69,82);
+
+    .icon {
+      margin-left: 35.5px;
+      margin-top: 35.5px;
+
+      .image {
+        width: 75px;
+        height: 75px;
+        border-radius: 25px;
+      }
+    }
+
+    .info {
+      margin: 0 0 0 50px;
+
+      .user,
+      .comment {
+        color:  #FFFFFF;
+        font-size: 18px;
+        font-family: 'SF Pro', sans-serif;
+      }
+
+      .user {
+        margin-top: 25px;
+        font-size: 24px;
+      }
+
+      .comment {
+        margin-top: 10px;
+        margin-right: 30px;
+      }
+    }
+  }
+}

@@ -3,5 +3,5 @@ import { AuthService } from "../services/auth.service";
 
 export const authGuard = () => {
   const authService = inject(AuthService);
-  return authService.getIsAuthenticated;
+  return  authService.getIsAuthenticated();
 };

@@ -13,6 +13,7 @@ import {DefaultLanguage} from "./shared/constants/service.url.constants";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {authInterceptor} from "./core/interceptors/auth.interceptor";
+import {provideOAuthClient} from "angular-oauth2-oidc";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -27,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     provideToastr(),
     BrowserModule,
     BrowserAnimationsModule,
+    provideOAuthClient(),
     provideToastr({
       timeOut: 4000,
       positionClass: 'toast-bottom-right',

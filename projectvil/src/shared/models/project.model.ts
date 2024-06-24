@@ -1,4 +1,6 @@
-﻿export interface ICreateProjectInput {
+﻿import {E_POSITION_LEVEL} from "./position.model";
+
+export interface ICreateProjectInput {
   userId: string,
   name: string,
   description: string,
@@ -34,13 +36,25 @@ export interface IProjectDto {
   },
   positions: {
     name: string,
-    level: number,
+    level: E_POSITION_LEVEL,
     description: string
-  }[]
+  }[],
+  documentsIds: string[]
 }
 
 export interface IProjectLikeDto {
   projectId: string,
   likes: number,
   isLike: boolean
+}
+
+export interface ICreateProjectCommentInput {
+  projectId: string,
+  comment: string
+}
+
+export interface IProjectComment {
+  userName: string,
+  userIcon: string,
+  comment: string
 }

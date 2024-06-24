@@ -2,49 +2,42 @@
   background-color: transparent;
   border: none;
   padding: 0;
-
 }
 
 .show {
   display: none;
 }
 
-/* Скрытие выпадающего контента по умолчанию */
 .dropdown-content {
   display: none;
   background-color: transparent;
   width: 32px;
 }
 
-/* Показываем выпадающий контент при наведении на кнопку */
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Стилизация списка */
 .dropdown-content ul {
   list-style-type: none;
   padding: 0;
   margin-left: 8px;
 }
 
-/* Стилизация элементов списка */
 .dropdown-content li {
   margin: 4px 0;
   cursor: pointer;
 }
 
 .img {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
 }
 
-/* При наведении на элемент списка */
 .dropdown-content li:hover {
   background-color: transparent;
 }
 
-/* Стилизация изображений внутри элементов списка */
 .dropdown-content li img {
   width: 32px;
   height: auto;

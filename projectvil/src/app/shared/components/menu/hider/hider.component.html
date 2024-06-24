@@ -1,18 +1,172 @@
-<div class="container">
-  <div class="user">
-    <div class="avatar">
-      <img [src]="avatar" alt="Upload File" class="image">
+<ng-container>
+  <div *ngTemplateOutlet="isCommon && isHome ? commonAreaHome : isCommon && !isHome ? commonAreaNotHome : personalArea"></div>
+</ng-container>
+
+<ng-template #commonAreaHome>
+  <div class="container">
+    <div class="user">
+      <div class="avatar">
+        <img
+          src="assets/images/logo.png"
+          alt="Upload File"
+          class="app-logo"
+          (click)="goToHomePage()"
+        >
+      </div>
+      <div class="user-name">
+        <span class="name">Projectvil</span>
+      </div>
     </div>
-    <div class="user-name">
-      <span class="name">{{ 'Hider:Hi' | translate }} {{ userName }}</span>
+
+    <div
+      class="buttons"
+      [ngStyle]="{'margin': !authService.getIsAuthenticated() ? '7px 0 7px auto' : '7px 80px 7px auto'}"
+    >
+      <div class="add-project-common">
+        <a (click)="scrollTo('paragraph-about')" class="about">{{ 'Home:About' | translate }}</a>
+        <a (click)="scrollTo('paragraph-projects')" class="projects">{{ 'Home:Projects' | translate }}</a>
+        <a href="#" class="participants">{{ 'Home:Participants' | translate }}</a>
+        <a href="#" class="vacancies">{{ 'Home:Vacancies' | translate }}</a>
+        <button
+          class="button-enter"
+          type="button"
+          [ngStyle]="{display: !authService.getIsAuthenticated() ? 'block' : 'none'}"
+          (click)="enter()"
+        >{{'Home:Signin' | translate}}</button>
+        <button
+          type="button"
+          [ngStyle]="{display: !authService.getIsAuthenticated() ? 'block' : 'none'}"
+          class="button-registration"
+          (click)="registration()"
+        >{{'Home:Signup' | translate}}</button>
+
+        <img
+          src="assets/images/Avatar.png"
+          *ngIf="authService.getIsAuthenticated()"
+          class="avatar"
+          alt="avatar"
+          (click)="goToPersonalInfo()"
+        >
+        <button
+          *ngIf="authService.getIsAuthenticated()"
+          class="notification"
+          (click)="getNotification()"
+        >
+          <img src="assets/images/notification.svg" class="notification-image" alt="notification">
+        </button>
+      </div>
+      <div class="language-container-common">
+        <app-language></app-language>
+        <div
+          class="logout-button"
+          [ngStyle]="{display: authService.getIsAuthenticated() ? 'block' : 'none'}"
+        >
+          <button
+            class="logout"
+            (click)="logout()"
+          >
+            <img src="assets/images/logout.svg" class="logout-button" alt="logout">
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="buttons">
-    <div class="add-project">
-      <button class="green-button" (click)="goToCreateProj()"> {{'Hider:Button:CreateProject' | translate }} </button>
+</ng-template>
+
+<ng-template #commonAreaNotHome>
+  <div class="container">
+    <div class="user">
+      <div class="avatar">
+        <img
+          src="assets/images/logo.png"
+          alt="Upload File"
+          class="app-logo"
+          (click)="goToHomePage()"
+        >
+      </div>
+      <div class="user-name">
+        <span class="name">Projectvil</span>
+      </div>
     </div>
-    <div class="language-container">
-      <app-language class="language"></app-language>
+
+    <div
+      class="buttons"
+      [ngStyle]="{'margin': !authService.getIsAuthenticated() ? '7px 0 7px auto' : '7px 80px 7px auto'}"
+    >
+      <div class="add-project-common">
+        <button
+          class="button-enter"
+          type="button"
+          [ngStyle]="{display: !authService.getIsAuthenticated() ? 'block' : 'none'}"
+          (click)="enter()"
+        >{{'Home:Signin' | translate}}</button>
+        <button
+          type="button"
+          [ngStyle]="{display: !authService.getIsAuthenticated() ? 'block' : 'none'}"
+          class="button-registration"
+          (click)="registration()"
+        >{{'Home:Signup' | translate}}</button>
+
+        <img
+          src="assets/images/Avatar.png"
+          *ngIf="authService.getIsAuthenticated()"
+          class="avatar"
+          alt="avatar"
+          (click)="goToPersonalInfo()"
+        >
+        <button
+          *ngIf="authService.getIsAuthenticated()"
+          class="notification"
+          (click)="getNotification()"
+        >
+          <img src="assets/images/notification.svg" class="notification-image" alt="notification">
+        </button>
+      </div>
+      <div class="language-container-common">
+        <app-language></app-language>
+        <div
+          class="logout-button"
+          [ngStyle]="{display: authService.getIsAuthenticated() ? 'block' : 'none'}"
+        >
+          <button
+            class="logout"
+            (click)="logout()"
+          >
+            <img src="assets/images/logout.svg" class="logout-button" alt="logout">
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
+</ng-template>
+
+<ng-template #personalArea>
+  <div class="container">
+    <div class="user">
+      <div class="avatar">
+        <img
+          src="assets/images/logo.png"
+          alt="Upload File"
+          class="app-logo"
+          (click)="goToHomePage()"
+        >
+      </div>
+      <div class="user-name">
+        <span class="name">Projectvil</span>
+      </div>
+    </div>
+    <div class="buttons">
+      <div class="add-project">
+        <button class="green-button" (click)="goToCreateProj()">{{'Hider:Button:CreateProject' | translate }}</button>
+        <button class="notification" (click)="getNotification()">
+          <img src="assets/images/notification.svg" class="notification-image" alt="notification">
+        </button>
+      </div>
+      <div class="language-container">
+        <app-language></app-language>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -9,7 +9,6 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { map, Observable, Subscription } from "rxjs";
 import { IPageResultDto } from "../../../../shared/models/base/pageResult.model";
 import { IDomainDto } from "../../../../shared/models/domain/domain-dto.model";
-import { AppConfig } from "../../../../config/config";
 import { PageSettingsService } from "../../../core/services/page-settings.service";
 import {
   IPagedAndSortiedAndFilteredRequestInput
@@ -17,6 +16,7 @@ import {
 import { HttpClient } from "@angular/common/http";
 import { LanguageComponent } from "../language/language.component";
 import { LanguageChangeService } from "../../../core/services/language-changes.service";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'app-dropdown',
@@ -40,7 +40,6 @@ import { LanguageChangeService } from "../../../core/services/language-changes.s
 export class DropdownComponent implements OnInit, OnDestroy {
   @Input() textField: string = '';
   @Input() valueField: string = '';
-  @Input() serviceName: string = '';
   @Input() entity: string = '';
   @Input() load: boolean = false;
   @Input() static: boolean = false;
@@ -50,7 +49,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
   languageSubscription$!: Subscription;
 
   selectedValue: string = '';
-  private gateway = AppConfig.url;
+  private readonly gateway: string = '';
   protected data: { [key: string]: any }[] = [];
 
   private input: IPagedAndSortiedAndFilteredRequestInput = {
@@ -64,6 +63,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     private pageSettingsService: PageSettingsService,
     private http: HttpClient,
     private languageChangeService: LanguageChangeService) {
+    this.gateway = environment.issuer;
   }
 
   ngOnInit(): void {
@@ -98,7 +98,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   private getData(data: IPagedAndSortiedAndFilteredRequestInput) : Observable<IPageResultDto<any>> {
     const params = this.pageSettingsService.createParams(data);
-    const url = `${this.gateway}/${this.serviceName}/${this.entity}`;
+    const url = `${this.gateway}/${this.entity}`;
 
     return this.http.get<IPageResultDto<IDomainDto>>(url, { params })
       .pipe(

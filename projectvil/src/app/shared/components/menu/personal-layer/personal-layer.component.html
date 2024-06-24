@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <app-hider
+    [isCommon]="false"
+  ></app-hider>
+  <div class="main-content">
+    <app-menu
+      (isCloseMenu)="isOpen($event)"
+    ></app-menu>
+    <div
+      [ngStyle]="{'width': !isMenuOpen ? 'calc(100% - 130px)' : 'calc(100% - 280px - 75px)'}"
+      class="router-outlet-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+

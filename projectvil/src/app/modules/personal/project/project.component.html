@@ -1,0 +1,89 @@
+<ng-container>
+  <div *ngTemplateOutlet="isCommon ? commonArea : personalArea"></div>
+</ng-container>
+
+<ng-template #personalArea>
+  <div [ngStyle]="{'display': 'flex'}">
+    <app-navigation
+      [navigationButtons]="navigationButtons"
+    ></app-navigation>
+    <app-search
+      class="search"
+    ></app-search>
+  </div>
+
+  <button class="block-content" *ngFor="let item of data" (click)="goToDetails(item.id)">
+    <img [src]="item.imageUrl" alt="" class="image">
+    <span class="status status-font">{{item.statusName}}</span>
+    <div class="info">
+      <div class="name">{{item.name}}</div>
+      <div class="domain-name">{{item.domainName}}</div>
+      <div class="description">{{item.description}}</div>
+
+      <div class="futer">
+        <div class="position" *ngIf="item.positions && item.positions.length > 0">{{item.positions.length}} {{ 'Project:Details:Position.Open' | translate }}</div>
+        <app-like
+          [isTotal] = "true"
+          [total]="item.like.likes"
+          [isLike] = "item.like.isLike"
+          [entityName]="'project/like'"
+          class="like"
+          (click)="like($event, item.like)"></app-like>
+      </div>
+    </div>
+  </button>
+
+  <ng-container *ngIf="pageCount > 0">
+    <div class="pagination">
+      <app-pagination
+        [pageCount]="pageCount"
+        [take]="maxResultCount"
+      ></app-pagination>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #commonArea>
+  <div [ngStyle]="{'display': 'flex'}">
+    <div class="title">{{ 'Common:Project:Title' | translate }}</div>
+    <app-search
+      class="search"
+    ></app-search>
+  </div>
+
+  <button class="block-content" *ngFor="let item of data" (click)="goToDetails(item.id)">
+    <img [src]="item.imageUrl" alt="" class="image">
+    <span class="status status-font">{{item.statusName}}</span>
+    <div class="info">
+      <div class="name">{{item.name}}</div>
+      <div class="domain-name">{{item.domainName}}</div>
+      <div class="description">{{item.description}}</div>
+
+      <div class="futer">
+        <div class="position" *ngIf="item.positions && item.positions.length > 0">{{item.positions.length}} {{ 'Project:Details:Position.Open' | translate }}</div>
+        <app-like
+          [isTotal] = "true"
+          [total]="item.like.likes"
+          [isLike] = "item.like.isLike"
+          [entityName]="'project/like'"
+          class="like"
+          (click)="like($event, item.like)"></app-like>
+      </div>
+    </div>
+  </button>
+
+  <div [ngStyle]="{'display': 'flex'}">
+    <div class="create-project">
+      <button class="green-button" (click)="goToCreateProj()">{{'Hider:Button:CreateProject' | translate }}</button>
+    </div>
+    <ng-container *ngIf="pageCount > 0">
+      <div class="pagination">
+        <app-pagination
+          [pageCount]="pageCount"
+          [take]="maxResultCount"
+        ></app-pagination>
+      </div>
+    </ng-container>
+  </div>
+
+</ng-template>
