@@ -291,7 +291,7 @@
     font: 510 16px/120% SF Pro, sans-serif;
     backdrop-filter: blur(42.52089309692383px);
     margin-top: 26px;
-    padding: 0px 26px;
+    padding: 0 26px;
     box-sizing: border-box;
   }
 
@@ -374,8 +374,8 @@
     background-color: var(--Gray-500, #adb5bd);
     cursor: pointer;
     border-radius: 999px;
-    margin: 20px 10px 0px 0px;
-    padding: 0px;
+    margin: 20px 10px 0 0;
+    padding: 0;
     height: 44px;
     width: 40%;
     text-align: center;
@@ -385,8 +385,8 @@
     background-color: var(--Gray-500, #adb5bd);
     cursor: pointer;
     border-radius: 999px;
-    margin: 20px 0px 0px 10px;
-    padding: 0px;
+    margin: 20px 0 0 10px;
+    padding: 0;
     height: 44px;
     width: 40%;
     text-align: center;
@@ -402,7 +402,7 @@
     aspect-ratio: 1;
     object-position: center;
     width: 20px;
-    padding: 1.5px 0px;
+    padding: 1.5px 0;
   }
 
   .error {
