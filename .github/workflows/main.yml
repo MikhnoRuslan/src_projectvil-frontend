@@ -1,0 +1,55 @@
+name: Deploy to FTP
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build -- --configuration production
+
+    - name: Rename ps.htm to app_offline.htm on FTP server
+      run: |
+        sudo apt-get install -y lftp
+        if lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "ls /www.projectvil.somee.com/ps.htm; bye" -p 21 ftp://198.37.116.26; then
+          echo "File ps.htm found, renaming to app_offline.htm"
+          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "mv /www.projectvil.somee.com/ps.htm /www.etime.somee.com/app_offline.htm; bye" -p 21 ftp://198.37.116.26
+        else
+          echo "File ps.htm not found, skipping renaming"
+        fi
+
+    - name: Pause for 5 seconds
+      run: sleep 5
+
+    - name: Deploy to FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: 198.37.116.25
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }} 
+        local-dir: dist/etime-fe/browser/
+        server-dir: /www.projectvil.somee.com/wwwroot/
+        dangerous-clean-slate: false
+
+    - name: Rename app_offline.htm back to ps.htm on FTP server
+      run: |
+        lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "mv /www.projectvil.somee.com/app_offline.htm /www.projectvil.somee.com/ps.htm; bye" -p 21 ftp://198.37.116.26
+      shell: bash
