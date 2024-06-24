@@ -45,7 +45,7 @@ jobs:
         server: 198.37.116.26
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }} 
-        local-dir: dist/etime-fe/browser/
+        local-dir: dist/projectvil/browser/
         server-dir: /www.projectvil.somee.com/wwwroot/
         dangerous-clean-slate: false
 
