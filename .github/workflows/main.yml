@@ -31,7 +31,7 @@ jobs:
         sudo apt-get install -y lftp
         if lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "ls /www.projectvil.somee.com/ps.htm; bye" -p 21 ftp://198.37.116.26; then
           echo "File ps.htm found, renaming to app_offline.htm"
-          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "mv /www.projectvil.somee.com/ps.htm /www.etime.somee.com/app_offline.htm; bye" -p 21 ftp://198.37.116.26
+          lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "mv /www.projectvil.somee.com/ps.htm /www.projectvil.somee.com/app_offline.htm; bye" -p 21 ftp://198.37.116.26
         else
           echo "File ps.htm not found, skipping renaming"
         fi
