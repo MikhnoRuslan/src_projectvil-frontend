@@ -51,7 +51,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   private currentUserId: string | null = '';
   private readonly gateway: string = '';
   private entity = 'projectblob';
-  private defaultProjectAvatar = './assets/images/project-avatar.avif'
+  private defaultProjectAvatar = './assets/images/project-avatar.svg'
 
   private _destroy$ = new Subject<void>();
 
